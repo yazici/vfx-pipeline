@@ -1,0 +1,4 @@
+Use local internet with pptp VPN
+Open "PowerShell" as an administrator, and with the following command you can fix it. Note that you should reboot the PC after this.
+
+PS C: \> Set-VpnConnection -Name "YOURVPN" -SplitTunneling $True -PassThru
