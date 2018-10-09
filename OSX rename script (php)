@@ -1,0 +1,24 @@
+Pipeline - rename script php
+<?php
+# Change your PATH to the path containing your folders that should be renamed
+define('PATH', '/Volumes/ARMADILLO/_PROJECTS/0014_AR_1308/DELIVERY/FINAL/ANG_v003/DPX_4K/');
+# Change glob PATH name to get an array of folders that start with for example "ANG"
+$folders = glob(PATH . 'ANG*');
+$i = 0;
+foreach($folders as $folder) {
+# Look for a specific file extension. Change /*.dpx to whatever type of files you have.
+$files = glob($folder . '/*.dpx');
+foreach($files as $file) {
+$parts = explode('/', $file);
+$count = count($parts);
+$folderName = $parts[$count - 2];
+$fileName = $parts[$count - 1];
+$parts = explode('.', $parts[$count - 1]);
+$number = $parts[1];
+$old = $folderName . '/' . $fileName;
+$new = $folderName . '/' . $folderName . '.' . $number . '.dpx';
+rename($old, $new);
+++$i;
+}
+}
+echo "$i files renamed\n";
